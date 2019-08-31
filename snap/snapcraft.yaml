@@ -14,33 +14,34 @@ slots:
     read: 
       - $SNAP
 parts:
-  qt:
-     plugin: qmake
-     qt-version: qt5
-     source-type: local
-     source: src/
-     build-packages:
+    qt:
+      plugin: qmake
+      qt-version: qt5
+      source-type: local
+      source: src/
+      build-packages:
             - build-essential
             - qtbase5-dev
             - libqt5webkit5-dev
-     stage:
-          - -usr/share/pkgconfig
-     stage-packages:
-          - libqt5sql5-sqlite
-          - libqt5webkit5
-          - libqt5x11extras5
-          - libqt5waylandclient5
-          - libqt5xml5
-          - libqt5opengl5-gles
-          - libdb5.3
-    build-attributes: 
-      - no-system-libraries
-    after: [desktop-qt5]
-  cleanup:
-    after: 
-      - qt
-    plugin: nil
-    override-prime: |
-      # Remove unneeded stage files to save space
-      cd usr/share
-      rm -rf apport bash-completion bug doc doc-base icons lintian man pam-configs pkgconfig themes upstart zsh
+      stage:
+           - -usr/share/pkgconfig
+      stage-packages:
+           - libqt5sql5-sqlite
+           - libqt5webkit5
+           - libqt5x11extras5
+           - libqt5waylandclient5
+           - libqt5xml5
+           - libqt5opengl5-gles
+           - libdb5.3
+      build-attributes: 
+       - no-system-libraries
+      after: [desktop-qt5]   
+
+    cleanup:
+       after: 
+            - qt
+       plugin: nil
+       override-prime: |
+          # Remove unneeded stage files to save space
+          cd usr/share
+          rm -rf apport bash-completion bug doc doc-base icons lintian man pam-configs pkgconfig themes upstart zsh
