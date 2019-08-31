@@ -12,20 +12,6 @@ architectures:
   - build-on: amd64
     run-on: amd64
 
-plugs:
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/usr/share/themes
-    default-provider: gtk-common-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/usr/share/icons
-    default-provider: gtk-common-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/usr/share/sounds
-    default-provider: gtk-common-themes
-
 slots: 
   qt551:
     interface: content
@@ -42,6 +28,7 @@ parts:
            - libqt5xml5
            - libqt5opengl5-gles
            - libdb5.3
+           - libqt5libqgtk2
       build-attributes: 
        - no-system-libraries
       after: [desktop-qt5]   
