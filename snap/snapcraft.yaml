@@ -15,16 +15,7 @@ slots:
       - $SNAP
 parts:
     qt:
-      plugin: qmake
-      qt-version: qt5
-      source-type: local
-      source: src/
-      build-packages:
-            - build-essential
-            - qtbase5-dev
-            - libqt5webkit5-dev
-      stage:
-           - -usr/share/pkgconfig
+      plugin: nil
       stage-packages:
            - libqt5sql5-sqlite
            - libqt5webkit5
