@@ -43,8 +43,8 @@ parts:
            - libqt5opengl5-gles
            - libdb5.3
            - libqt5libqgtk2
-      build-attributes: 
-       - no-system-libraries
+#      build-attributes: 
+#       - no-system-libraries
       after: [desktop-qt5]   
 
     cleanup:
