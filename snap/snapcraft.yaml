@@ -13,26 +13,11 @@ architectures:
   - build-on: amd64
     run-on: amd64
 
-plugs:
-  gsettings:
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/data-dir/themes
-    default-provider: gtk-common-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/data-dir/sounds
-    default-provider: gtk-common-themes
-
 slots: 
   qt551:
     interface: content
     read: 
-      - $SNAP
+      - /
 parts:
   desktop-qt5:
      source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
@@ -68,15 +53,15 @@ parts:
       - fcitx-frontend-qt5
 
   qt5-gtk-platform:
-    plugin: nil
-    stage-packages:
+     plugin: nil
+     stage-packages:
       - qt5-gtk-platformtheme
 
-    cleanup:
-       after: 
-            - desktop-qt5
-       plugin: nil
-       override-prime: |
-          # Remove unneeded stage files to save space
-          cd usr/share
-          rm -rf apport bash-completion bug doc doc-base lintian man pam-configs pkgconfig upstart zsh
+  cleanup:
+     after: 
+       - desktop-qt5
+     plugin: nil
+     override-prime: |
+       # Remove unneeded stage files to save space
+       cd usr/share
+       rm -rf apport bash-completion bug doc doc-base lintian man pam-configs pkgconfig upstart zsh
