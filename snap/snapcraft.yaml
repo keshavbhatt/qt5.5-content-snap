@@ -42,7 +42,6 @@ parts:
       - libqt5x11extras5
       - libqt5waylandclient5
       - libqt5xml5
-      - libqt5opengl5-gles
       - libdb5.3
       - libgdk-pixbuf2.0-0
       - libqt5svg5 
