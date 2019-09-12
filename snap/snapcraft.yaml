@@ -4,6 +4,13 @@ summary: Qt 5.5.1 full runtime stack content snap.
 description: |
   This snap is to be consumed by various Qt apps which uses Qt 5.5.1 .
   Qt provides C++ classes and QML types for rendering GUI.
+  OTHER DEPENDENCIES:
+    - mpv
+    - ffmpeg
+    - python
+    - socat
+    - wget
+    - coreutils
 
 grade: stable 
 confinement: strict 
@@ -50,6 +57,7 @@ parts:
       - xdg-user-dirs
       - fcitx-frontend-qt5
       - libglu1-mesa
+      - libslang2
   ppa:
      plugin: nil
      override-pull: |
