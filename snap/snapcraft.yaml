@@ -44,7 +44,6 @@ parts:
       - libqt5xml5
       - libqt5opengl5-gles
       - libdb5.3
-      - libqt5libqgtk2
       - libgdk-pixbuf2.0-0
       - libqt5svg5 
       - try: [appmenu-qt5] # not available on core18
