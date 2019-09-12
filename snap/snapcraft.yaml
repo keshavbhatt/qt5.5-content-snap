@@ -7,23 +7,25 @@ description: |
 
 grade: stable 
 confinement: strict 
+base: core18
 
 architectures:
   - build-on: amd64
     run-on: amd64
 
 plugs:
+  gsettings:
   gtk-3-themes:
     interface: content
-    target: $SNAP/usr/share/themes
+    target: $SNAP/data-dir/themes
     default-provider: gtk-common-themes
   icon-themes:
     interface: content
-    target: $SNAP/usr/share/icons
+    target: $SNAP/data-dir/icons
     default-provider: gtk-common-themes
   sound-themes:
     interface: content
-    target: $SNAP/usr/share/sounds
+    target: $SNAP/data-dir/sounds
     default-provider: gtk-common-themes
 
 slots: 
@@ -32,24 +34,47 @@ slots:
     read: 
       - $SNAP
 parts:
-    qt:
-      plugin: nil
-      stage-packages:
-           - libqt5sql5-sqlite
-           - libqt5webkit5
-           - libqt5x11extras5
-           - libqt5waylandclient5
-           - libqt5xml5
-           - libqt5opengl5-gles
-           - libdb5.3
-           - libqt5libqgtk2
-#      build-attributes: 
-#       - no-system-libraries
-      after: [desktop-qt5]   
+  desktop-qt5:
+     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
+     source-subdir: qt
+     plugin: make
+     make-parameters: ["FLAVOR=qt5"]
+     build-packages:
+      - build-essential
+      - qtbase5-dev
+      - dpkg-dev
+     stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - adwaita-icon-theme
+      - gnome-themes-standard
+      - shared-mime-info
+      - libqt5gui5
+      - libqt5sql5-sqlite
+      - libqt5webkit5
+      - libqt5x11extras5
+      - libqt5waylandclient5
+      - libqt5xml5
+      - libqt5opengl5-gles
+      - libdb5.3
+      - libqt5libqgtk2
+      - libgdk-pixbuf2.0-0
+      - libqt5svg5 
+      - try: [appmenu-qt5] # not available on core18
+      - locales-all
+      - xdg-user-dirs
+      - fcitx-frontend-qt5
+
+  qt5-gtk-platform:
+    plugin: nil
+    stage-packages:
+      - qt5-gtk-platformtheme
 
     cleanup:
        after: 
-            - qt
+            - desktop-qt5
        plugin: nil
        override-prime: |
           # Remove unneeded stage files to save space
