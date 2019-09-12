@@ -49,6 +49,7 @@ parts:
       - locales-all
       - xdg-user-dirs
       - fcitx-frontend-qt5
+      - libglu1-mesa
   ppa:
      plugin: nil
      override-pull: |
@@ -63,11 +64,13 @@ parts:
            - mpv
            - ffmpeg
            - python
+           - socat
+           - wget
+           - coreutils
   qt5-gtk-platform:
      plugin: nil
      stage-packages:
       - qt5-gtk-platformtheme
-
   cleanup:
      after: 
        - desktop-qt5
@@ -75,4 +78,4 @@ parts:
      override-prime: |
        # Remove unneeded stage files to save space
        cd usr/share
-       rm -rf apport bash-completion bug doc doc-base lintian man pam-configs pkgconfig upstart zsh
+       rm -rf apport bash-completion bug doc doc-base icons themes lintian man pam-configs pkgconfig upstart zsh
