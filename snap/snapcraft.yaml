@@ -49,7 +49,20 @@ parts:
       - locales-all
       - xdg-user-dirs
       - fcitx-frontend-qt5
-
+  ppa:
+     plugin: nil
+     override-pull: |
+       apt install wget
+       echo "deb http://ppa.launchpad.net/mc3man/mpv-tests/ubuntu bionic main" >>  /etc/apt/sources.list
+       wget -qO - http://ktechpit.com/USS/Olivia/snapcraft/mpv.key | apt-key add -
+       apt update
+  app-depes:
+     plugin: nil
+     after: [ppa,desktop-qt5]
+     stage-packages:
+           - mpv
+           - ffmpeg
+           - python
   qt5-gtk-platform:
      plugin: nil
      stage-packages:
