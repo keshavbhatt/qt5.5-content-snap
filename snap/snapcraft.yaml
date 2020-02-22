@@ -89,4 +89,4 @@ parts:
      override-prime: |
        # Remove unneeded stage files to save space
        cd usr/share
-       rm -rf apport bash-completion bug doc doc-base icons themes lintian man pam-configs pkgconfig upstart zsh
+       rm -rf apport bash-completion bug doc doc-base lintian man pam-configs pkgconfig upstart zsh
