@@ -58,6 +58,7 @@ parts:
       - fcitx-frontend-qt5
       - libglu1-mesa
       - libslang2
+      - qdbus-qt5 # for wonderwall qdbus dependency
   ppa:
      plugin: nil
      override-pull: |
