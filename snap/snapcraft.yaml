@@ -11,10 +11,12 @@ description: |
     - socat
     - wget
     - coreutils
+ 
 
 grade: stable 
 confinement: strict 
 base: core18
+compression: lzo
 
 architectures:
   - build-on: amd64
