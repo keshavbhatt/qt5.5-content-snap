@@ -1,5 +1,5 @@
 name: qt551 
-version: '5.5' 
+version: '5.x-core18' 
 summary: Qt 5.5.1 full runtime stack content snap. 
 description: |
   This snap is to be consumed by various Qt apps which uses Qt 5.5.1 .
