@@ -59,6 +59,8 @@ parts:
       - libglu1-mesa
       - libslang2
       - qdbus-qt5 # for wonderwall qdbus dependency
+      - qt5-gtk-platformtheme
+      
   ppa:
      plugin: nil
      override-pull: |
@@ -66,6 +68,7 @@ parts:
        echo "deb http://ppa.launchpad.net/mc3man/mpv-tests/ubuntu bionic main" >>  /etc/apt/sources.list
        wget -qO - http://ktechpit.com/USS/Olivia/snapcraft/mpv.key | apt-key add -
        apt update
+       
   app-depes:
      plugin: nil
      after: [ppa,desktop-qt5]
@@ -79,15 +82,15 @@ parts:
            - pv
            - tar
            - libtag1v5
-  qt5-gtk-platform:
-     plugin: nil
-     stage-packages:
-      - qt5-gtk-platformtheme
+
   cleanup:
-     after: 
-       - desktop-qt5
-     plugin: nil
-     override-prime: |
-       # Remove unneeded stage files to save space
-       cd usr/share
-       rm -rf apport bash-completion bug doc doc-base lintian man pam-configs pkgconfig upstart zsh
+    after:
+      - app-depes
+    plugin: nil
+    override-prime: |
+      set -eux
+      for CRUFT in bug lintian man; do
+        rm -rf $SNAPCRAFT_PRIME/usr/share/$CRUFT
+      done
+      find $SNAPCRAFT_PRIME/usr/share/doc/ -type f -not -name 'copyright' -delete
+      find $SNAPCRAFT_PRIME/usr/share -type d -empty -delete
